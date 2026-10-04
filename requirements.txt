@@ -1,0 +1,10 @@
+# EliteBot — dépendances (versions stables épinglées)
+fastapi==0.115.6
+uvicorn[standard]==0.34.0
+pydantic==2.10.4
+requests==2.32.3
+pandas==2.2.3
+numpy==2.2.1
+# Pont MetaTrader 5 : uniquement installable sous Windows (VPS/PC local).
+# Sous Linux/Render/Railway, pip l'ignore gracieusement et le bot bascule en simulation.
+MetaTrader5==5.0.45; sys_platform == "win32"

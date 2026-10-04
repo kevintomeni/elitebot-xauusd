@@ -1,0 +1,15 @@
+# Secrets & environnement
+.env
+*.env
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.mypy_cache/
+.pytest_cache/
+
+# Divers
+.DS_Store
+*.log

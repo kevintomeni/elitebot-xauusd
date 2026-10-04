@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>EliteBot — XAUUSD Quant Dashboard</title>
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<header>
+  <div class="brand">
+    <span class="logo">◆</span>
+    <div>
+      <h1>EliteBot <span class="tag">XAUUSD · M5/H1</span></h1>
+      <p id="conn-info">Connexion au serveur…</p>
+    </div>
+  </div>
+  <div class="header-right">
+    <div class="status-pills">
+      <span id="pill-mode" class="pill">—</span>
+      <span id="pill-conn" class="pill">—</span>
+      <span id="pill-bot" class="pill">—</span>
+      <span id="pill-breaker" class="pill">—</span>
+    </div>
+    <button id="btn-panic" class="panic" title="Liquide tout et arrête le bot">⏻ PANIC — ARRÊT D'URGENCE</button>
+  </div>
+</header>
+
+<main>
+  <section class="grid-kpi">
+    <div class="card kpi">
+      <span class="kpi-label">Solde (Balance)</span>
+      <span id="kpi-balance" class="kpi-value">—</span>
+    </div>
+    <div class="card kpi">
+      <span class="kpi-label">Équité</span>
+      <span id="kpi-equity" class="kpi-value">—</span>
+    </div>
+    <div class="card kpi">
+      <span class="kpi-label">P/L latent</span>
+      <span id="kpi-floating" class="kpi-value">—</span>
+    </div>
+    <div class="card kpi">
+      <span class="kpi-label">Drawdown du jour</span>
+      <span id="kpi-dd" class="kpi-value">—</span>
+      <div class="dd-bar"><div id="dd-fill"></div></div>
+    </div>
+    <div class="card kpi">
+      <span class="kpi-label">Prix XAUUSD</span>
+      <span id="kpi-price" class="kpi-value">—</span>
+      <span id="kpi-spread" class="kpi-sub">spread —</span>
+    </div>
+    <div class="card kpi">
+      <span class="kpi-label">Trades du jour</span>
+      <span id="kpi-trades" class="kpi-value">—</span>
+      <span id="kpi-wl" class="kpi-sub">W/L —</span>
+    </div>
+  </section>
+
+  <section class="grid-main">
+    <div class="card chart-card">
+      <h2>Courbe d'équité</h2>
+      <canvas id="equity-chart"></canvas>
+    </div>
+    <div class="card controls-card">
+      <h2>Contrôles</h2>
+      <div class="toggle-row">
+        <label class="switch"><input type="checkbox" id="tg-bot"><span class="slider"></span></label>
+        <span>Robot <b id="lbl-bot">ON</b></span>
+      </div>
+      <div class="toggle-row">
+        <label class="switch"><input type="checkbox" id="tg-news" checked><span class="slider"></span></label>
+        <span>Filtre de news <b id="lbl-news">ON</b></span>
+      </div>
+      <div class="toggle-row">
+        <label class="switch"><input type="checkbox" id="tg-vol" checked><span class="slider"></span></label>
+        <span>Filtre de volatilité <b id="lbl-vol">ON</b></span>
+      </div>
+      <div class="toggle-row">
+        <label class="switch"><input type="checkbox" id="tg-time" checked><span class="slider"></span></label>
+        <span>Filtre horaire <b id="lbl-time">ON</b></span>
+      </div>
+      <button id="btn-reset-breaker" class="btn">Réinitialiser circuit-breaker</button>
+      <div id="news-panel" class="news-panel">
+        <h3>Prochaines news majeures</h3>
+        <ul id="news-list"></ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="grid-bottom">
+    <div class="card">
+      <h2>Positions ouvertes</h2>
+      <table id="positions-table">
+        <thead><tr><th>Ticket</th><th>Sens</th><th>Lots</th><th>Entrée</th><th>Prix</th><th>SL</th><th>TP</th><th>P/L</th></tr></thead>
+        <tbody></tbody>
+      </table>
+      <p id="no-positions" class="muted">Aucune position ouverte.</p>
+    </div>
+    <div class="card">
+      <h2>Journal de bord</h2>
+      <ul id="log-list"></ul>
+    </div>
+  </section>
+
+  <section class="card diagnostics">
+    <h2>Diagnostic moteur (M5)</h2>
+    <div id="diag-grid" class="diag-grid"></div>
+  </section>
+</main>
+
+<footer>EliteBot v<span id="ver">—</span> — Trading automatisé : risque de perte en capital. Utilisez d'abord un compte démo.</footer>
+
+<script src="/static/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+services:
+  # ================================================================
+  #  EliteBot — déploiement en un clic sur Render (plan gratuit)
+  #  1. Poussez ce dépôt sur GitHub
+  #  2. Render → New → Blueprint → sélectionnez le dépôt → Apply
+  # ================================================================
+  - type: web
+    name: elitebot-xauusd
+    runtime: docker
+    plan: free
+    healthCheckPath: /api/health
+    envVars:
+      - key: MODE
+        value: auto
+      - key: SYMBOL
+        value: XAUUSD
+      - key: RISK_PERCENT
+        value: "1.0"
+      - key: MAX_DAILY_DRAWDOWN_PCT
+        value: "3.0"
+      - key: NEWS_FILTER_ENABLED
+        value: "1"
+      - key: TIME_FILTER_ENABLED
+        value: "1"
+      # Renseignez uniquement si vous avez un pont MT5 Windows (VPS) :
+      - key: MT5_LOGIN
+        sync: false
+      - key: MT5_PASSWORD
+        sync: false
+      - key: MT5_SERVER
+        sync: false
