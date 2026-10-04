@@ -1,8 +1,20 @@
 services:
   # ================================================================
-  #  EliteBot — déploiement en un clic sur Render (plan gratuit)
-  #  1. Poussez ce dépôt sur GitHub
-  #  2. Render → New → Blueprint → sélectionnez le dépôt → Apply
+  #  EliteBot XAUUSD — Déploiement gratuit sur Render (plan free)
+  #  1. Pousse ce dépôt sur GitHub
+  #  2. Render → New → Blueprint → sélectionne le dépôt → Apply
+  #  3. Dans l'interface Render, ajoute les variables d'environnement :
+  #       MODE=auto                  (tente MT5, sinon simulation)
+  #       SYMBOL=XAUUSD
+  #       RISK_PERCENT=1.0
+  #       MAX_DAILY_DRAWDOWN_PCT=3.0
+  #       NEWS_FILTER_ENABLED=1
+  #       MT5_LOGIN                  (optionnel, uniquement si MT5)
+  #       MT5_PASSWORD               (optionnel)
+  #       MT5_SERVER                 (optionnel)
+  #  4. Le service démarre automatiquement sur le port 8000
+  #  5. Dashboard : https://ton-service.onrender.com
+  #  6. Healthcheck : /api/health
   # ================================================================
   - type: web
     name: elitebot-xauusd
@@ -20,12 +32,16 @@ services:
         value: "3.0"
       - key: NEWS_FILTER_ENABLED
         value: "1"
-      - key: TIME_FILTER_ENABLED
-        value: "1"
-      # Renseignez uniquement si vous avez un pont MT5 Windows (VPS) :
+      - key: NEWS_IMPACT
+        value: High
+      - key: NEWS_CURRENCIES
+        value: USD,EUR
+      # Renseignez uniquement si vous avez un serveur MT5 accessible :
       - key: MT5_LOGIN
         sync: false
       - key: MT5_PASSWORD
         sync: false
       - key: MT5_SERVER
         sync: false
+      - key: PORT
+        value: "8000"
