@@ -1,0 +1,2 @@
+# elitebot-xauusd
+bot IA
