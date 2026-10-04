@@ -10,7 +10,11 @@ import json
 import os
 from dataclasses import dataclass
 
-CONFIG_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "config.json")
+import sys
+
+# Le chemin du dossier du projet (où se trouve config.json)
+PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+CONFIG_PATH = os.path.join(PROJECT_ROOT, "config.json")
 
 
 def _load_config_file() -> dict:
@@ -28,8 +32,6 @@ def _env_str(name: str, default: str) -> str:
     if value is not None and value.strip() != "":
         return value.strip()
     return str(_load_config_file().get(name, default))
-    value = os.getenv(name)
-    return default if value is None or value.strip() == "" else value.strip()
 
 
 def _env_float(name: str, default: float) -> float:
